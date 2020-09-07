@@ -1,17 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import './styles.css';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// ! useState way (Functional Programming)
+const App = () => {
+  const [item, setItem] = useState(1);
+  // * useState는 state와 state modifier로 이루어진 array
+  // * initial state = 1
+  const incrementItem = () => setItem(item + 1);
+  const decrementItem = () => setItem(item - 1);
+  return (
+    <div className="App">
+      <h1>Hello {item}</h1>
+      <h2>Start editing to see some magit happen!</h2>
+      <button onClick={incrementItem}>Increment</button>
+      <button onClick={decrementItem}>decrement</button>
+    </div>
+  );
+};
+
+// ! state & setState way (Object-Oriented Programming)
+class AppUgly extends React.Component {
+  state = { item: 1 };
+  render() {
+    const { item } = this.state;
+    return (
+      <div className="App">
+        <h1>Hello {item}</h1>
+        <h2>Start editing to see some magit happen!</h2>
+        <button onClick={this.incrementItem}>Increment</button>
+        <button onClick={this.decrementItem}>decrement</button>
+      </div>
+    );
+  }
+  incrementItem = () => {
+    this.setState((state) => {
+      return {
+        item: state.item + 1,
+      };
+    });
+  };
+  decrementItem = () => {
+    this.setState((state) => {
+      return {
+        item: state.item - 1,
+      };
+    });
+  };
+}
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<AppUgly />, rootElement);

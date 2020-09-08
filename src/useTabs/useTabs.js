@@ -22,6 +22,7 @@ const useTabs = (initialTab, allTabs) => {
     changeItem: setCurrentIndex,
   };
 };
+// * useTabs는 useState를 이용한 새로운 hook
 
 const App = () => {
   const { currentItem, changeItem } = useTabs(0, contents);

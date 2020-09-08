@@ -10,6 +10,7 @@ const useTitle = (initialTitle) => {
   useEffect(updateTitle, [title]);
   return setTitle;
 };
+// * useTitle은 useState를 이용한 새로운 hook
 const App = () => {
   const titleUpdater = useTitle('Loading....');
   setTimeout(() => titleUpdater('Home'), 3000);

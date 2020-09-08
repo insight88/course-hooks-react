@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 const useClick = (onClick) => {
   const element = useRef();
+  // * useRef는 tag 중 ref property를 가지는 엘리먼트를 useRef.current에 저장
+  // * getElementByID를 하는 것과 비슷한 효과
   if (typeof onClick !== 'function') {
     return;
   }

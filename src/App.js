@@ -15,6 +15,8 @@ const App = () => {
   // * useCallback(callbackFn, [deps])
   // * shouldComponentUpdate와 비슷하게, deps가 바뀔 때만 callback을 부름
 
+  const [rect, inputRef2] = useMeasure([]);
+
   return (
     <div>
       <Hello increment={increment} />

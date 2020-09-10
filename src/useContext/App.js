@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Index } from './useContext/pages/index';
-import { About } from './useContext/pages/about';
+import { Index } from './pages';
+import { About } from './pages/about';
 import { UserContext } from './UserContext';
 
 function AppRouter() {
@@ -23,7 +23,6 @@ function AppRouter() {
           </ul>
         </nav>
         <UserContext.Provider value={value}>
-          {/* UserContext의 Provider로 consumer들에게 value prop을 전달 */}
           <Route path="/" exact component={Index} />
           <Route path="/about/" component={About} />
         </UserContext.Provider>

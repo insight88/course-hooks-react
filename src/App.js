@@ -1,54 +1,27 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
-import { useForm } from "./useForm";
-import { Hello } from "./Hello";
-import { useMeasure } from "./useMeasure";
+import React, { useState, useCallback } from 'react';
+import { Hello } from './Hello';
+import { Square } from './Square';
 
 const App = () => {
-  const [values, handleChange] = useForm({
-    email: "",
-    password: "",
-    firstName: ""
-  });
-  const inputRef = useRef();
-  const hello = useRef(() => console.log("hello"));
+  const [count, setCount] = useState(0);
+  const favouriteNums = [7, 21, 37];
 
-  const [showHello, setShowHello] = useState(true);
-
-  const [rect, inputRef2] = useMeasure([]);
+  const increment = useCallback(
+    (n) => {
+      setCount((c) => c + n);
+    },
+    [setCount]
+  );
+  // * useCallback(callbackFn, [deps])
+  // * shouldComponentUpdate와 비슷하게, deps가 바뀔 때만 callback을 부름
 
   return (
     <div>
-      <>
-        <button onClick={() => setShowHello(!showHello)}>toggle</button>
-        {showHello && <Hello />}
-        <input
-          ref={inputRef}
-          name="email"
-          value={values.email}
-          onChange={handleChange}
-        />
-        <input
-          ref={inputRef2}
-          name="firstName"
-          placeholder="first name"
-          value={values.firstName}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-        />
-        <button
-          onClick={() => {
-            inputRef.current.focus();
-            hello.current();
-          }}
-        >
-          focus
-        </button>
-      </>
+      <Hello increment={increment} />
+      <div>count: {count}</div>
+      {favouriteNums.map((n) => {
+        return <Square increment={increment} n={n} key={n} />;
+      })}
     </div>
   );
 };

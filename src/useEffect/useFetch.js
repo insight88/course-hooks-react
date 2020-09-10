@@ -22,7 +22,7 @@ export const useFetch = (url) => {
           }
         }, 2000);
       });
-  }, [url]);
+  }, [url, setState]);
 
   return state;
 };

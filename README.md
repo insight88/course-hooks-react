@@ -1,3 +1,6 @@
+#### 이 repository는 master branch, nomad branch 두 개의 branch로 이루어져있습니다.
+<br>
+
 # React Hooks #1 (master branch)
 
 * [React Hooks Tutorial - Ben Awad(YouTube)](https://www.youtube.com/playlist?list=PLN3n1USn4xlmyw3ebYuZmGp60mcENitdM)
